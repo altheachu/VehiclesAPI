@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Implements a REST-based controller for the Vehicles API.
  */
 @RestController
+@ApiResponses(value={
+        @ApiResponse(code=201, message = "create car successfully"),
+        @ApiResponse(code=204, message = "no content/ delete successfully"),
+        @ApiResponse(code=400, message = "This is a bad request"),
+        @ApiResponse(code=404, message = "Found no data"),
+        @ApiResponse(code=500, message = "The server is done")
+})
 @RequestMapping("/cars")
 class CarController {
 
