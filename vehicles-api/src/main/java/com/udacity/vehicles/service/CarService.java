@@ -5,6 +5,10 @@ import com.udacity.vehicles.client.prices.PriceClient;
 import com.udacity.vehicles.domain.Location;
 import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.CarRepository;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +38,8 @@ public class CarService {
         this.priceClient = priceClient;
     }
 
+    /** For the feedback "Maps and Pricing API could have invoked for each and every vehicle returned from the DB."
+    I am not sure about the meaning and how to address it.*/
     /**
      * Gathers a list of all vehicles
      * @return a list of all vehicles in the CarRepository
@@ -94,6 +100,7 @@ public class CarService {
                     .map(carToBeUpdated -> {
                         carToBeUpdated.setDetails(car.getDetails());
                         carToBeUpdated.setLocation(car.getLocation());
+                        carToBeUpdated.setCondition(car.getCondition());
                         return repository.save(carToBeUpdated);
                     }).orElseThrow(CarNotFoundException::new);
         }
